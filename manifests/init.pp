@@ -108,6 +108,13 @@ class globus (
   Optional[Stdlib::IP::Address] $ip_address = undef,
   Optional[Stdlib::Absolutepath] $export_node = undef,
   Optional[Stdlib::Absolutepath] $import_node = undef,
+  # oicd setup
+  Optional[Array[String]] $accepted_domains = undef,
+  Optional[Array[String]] $globus_user_id = undef,
+  
+  # Collection setup
+  Optional[Array[String]] $exposed_paths = undef,
+
 ) {
   $osfamily = $facts.dig('os', 'family')
 

@@ -1,0 +1,12 @@
+<% escaped = scope['globus::accepted_domains'].map{ |dom| Regexp.escape(dom) }  %>
+{
+  "DATA_TYPE": "expression_identity_mapping#1.0.0",
+  "mappings": [
+    {
+      "source": "{username}",
+      "match": "(.*)@(<%= escaped.join('|') %>)",
+      "output": "{0}"
+    }
+  ]
+}
+

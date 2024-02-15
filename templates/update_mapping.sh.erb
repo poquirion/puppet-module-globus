@@ -1,0 +1,2 @@
+ID=$(globus-connect-server storage-gateway list   | grep "^<%= scope['globus::display_name'] %> \+" | awk -F'|' '{sub(/^[ \t]+/, "", $2); print $2}')
+globus-connect-server storage-gateway update posix $ID --identity-mapping file:/root/mapping.json

@@ -1,12 +1,14 @@
-<% escaped = scope['globus::accepted_domains'].map{ |dom| Regexp.escape(dom) }  %>
 {
-  "DATA_TYPE": "expression_identity_mapping#1.0.0",
-  "mappings": [
+"DATA_TYPE": "expression_identity_mapping#1.0.0",
+"mappings": [
+<% scope['globus::users']&.each_with_index do |(user, attribute), index| -%>
+	<% if attribute.has_key?("globus_id") && !attribute["globus_id"].empty?  -%>
     {
       "source": "{username}",
-      "match": "(.*)@(<%= escaped.join('|') %>)",
-      "output": "{0}"
-    }
+      "match": "<%= attribute["globus_id"]  %>",
+      "output": "<%= user %>"
+    }<%= ',' unless index == scope['globus::users'].size - 1 %>
+	<% end -%>
+<% end -%>
   ]
 }
-

@@ -2,5 +2,6 @@ globus-connect-server endpoint setup "<%= scope['globus::display_name'] %>"  --o
 globus-connect-server node setup --deployment-key /var/lib/globus-connect-server/gcs-manager/deployment-key.json --incoming-port-range 50000 51000 --ip-address <%= scope['globus::_ip_address'] %>
 globus-connect-server oidc create    --quickstart-server-name auth-prune  --display-name "<%= scope['globus::display_name'] %>"  --support-contact  <%= scope['globus::owner'] %>  --support-email <%= scope['globus::contact_email'] %>
 globus-connect-server login localhost
-globus-connect-server storage-gateway create posix "<%= scope['globus::display_name'] %>"  --restrict-paths file:/root/restriction.json  --identity-mapping file:/root/mapping.json  --user-deny root  <% scope['globus::accepted_domains'].each do |accepted_domain| -%>   --domain <%=  accepted_domain %> <% end -%> 
-
+ID=$(globus-connect-server storage-gateway create posix "<%= scope['globus::display_name'] %>"  --restrict-paths file:/root/restriction.json  --identity-mapping file:/root/mapping.json  --user-deny root  <% scope['globus::accepted_domains'].each do |accepted_domain| -%>   --domain <%=  accepted_domain %> <% end -%> | sed 's/.*: \([a-z0-9\-]\+\)/\1/')
+ 
+globus-connect-server collection create  $ID / "<%= scope['globus::display_name'] %>"  --organization "<%= scope['globus::organization'] %>"   --contact-email <%= scope['globus::contact_email'] %>

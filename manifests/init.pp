@@ -114,6 +114,7 @@ class globus (
   
   # Collection setup
   Optional[Array[String]] $exposed_paths = undef,
+  Optional[Hash] $users = undef
 
 ) {
   $osfamily = $facts.dig('os', 'family')

@@ -22,7 +22,7 @@ describe 'globus class:' do
       apply_manifest(pp, catch_changes: true)
     end
 
-    describe yumrepo('globus-connect-server-5'), if: fact('os.family') == 'RedHat' do
+    describe yumrepo('globus-connect-server'), if: fact('os.family') == 'RedHat' do
       it { is_expected.to exist }
       it { is_expected.to be_enabled }
     end

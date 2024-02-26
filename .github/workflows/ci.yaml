@@ -16,10 +16,6 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - ruby: 2.7.7
-            puppet: 7
-            fixtures: .fixtures.yml
-            allow_failure: false
           - ruby: 3.2.2
             puppet: 8
             fixtures: .fixtures.yml
@@ -48,13 +44,9 @@ jobs:
       fail-fast: false
       matrix:
         set:
-          - "el7"
           - "el8"
           - "debian-11"
-          - "ubuntu-2004"
-          - "ubuntu-2204"
         puppet:
-          - "puppet7"
           - "puppet8"
     env:
       BUNDLE_WITHOUT: development:release

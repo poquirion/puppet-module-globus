@@ -14,11 +14,9 @@ describe 'globus' do
           owner: 'admin@example.com',
           display_name: 'Example',
           organization: 'Example',
-          contact_email:       => 'sdmin@example.com',
-          ip_address:          => '10.0.0.0',
-        users               => {'user':
-                                'globus_id': 'user@globusid.org'}
-
+          contact_email: 'sdmin@example.com',
+          ip_address: '10.0.0.0',
+          users: { 'user': { 'globus_id': 'user@globusid.org' } }
         }
       end
       let(:params) { default_params }

@@ -10,6 +10,10 @@ describe 'globus class:' do
         display_name        => 'REPLACE My Site Globus',
         owner               => 'REPLACE-user@example.com',
         organization        => 'REPLACE-My Site',
+        contact_email       => 'REPLACE-user@example.com',
+        ip_address          => 'REPLACE Public IP',
+        users               => {'REPLACE user1 name on host':
+                                 globus_id: 'REPLACE user1 Public Globus ID'}
         run_setup_commands  => false,
         manage_firewall     => false,
       }

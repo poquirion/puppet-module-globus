@@ -26,30 +26,28 @@ class globus::config {
     content => template('globus/globus-full-setup.sh.erb'),
   }
 
-   file { '/root/globus-cleanup.sh':
+  file { '/root/globus-cleanup.sh':
     ensure    => 'file',
     owner     => 'root',
     group     => 'root',
     mode      => '0700',
     content => template('globus/globus-cleanup.sh.erb'),
   }
- 
+
   file { '/root/update_mapping.sh':
-     ensure    => 'file',
-     owner     => 'root',
-     group     => 'root',
-     mode      => '0700',
-     content => template('globus/update_mapping.sh.erb'),
+    ensure    => 'file',
+    owner     => 'root',
+    group     => 'root',
+    mode      => '0700',
+    content => template('globus/update_mapping.sh.erb'),
   }
 
   exec { 'update_mapping':
-      path        => '/usr/bin:/usr/sbin:/bin',
-      command     => '/root/update_mapping.sh',
-      refreshonly => true,
-      subscribe   => File['/root/mapping.json'],
+    path        => '/usr/bin:/usr/sbin:/bin',
+    command     => '/root/update_mapping.sh',
+    refreshonly => true,
+    subscribe   => File['/root/mapping.json'],
   }
-
-
 
   if ! empty($globus::extra_gridftp_settings) {
     file { '/etc/gridftp.d/z-extra-settings':

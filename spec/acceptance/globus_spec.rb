@@ -12,8 +12,8 @@ describe 'globus class:' do
         organization        => 'REPLACE-My Site',
         contact_email       => 'REPLACE-user@example.com',
         ip_address          => 'REPLACE Public IP',
-        users               => {'REPLACE user1 name on host':
-                                 globus_id: 'REPLACE user1 Public Globus ID'}
+        users               => {'REPLACE user1 name on host' => 
+                                 globus_id => 'REPLACE user1 Public Globus ID'}
         run_setup_commands  => false,
         manage_firewall     => false,
       }
@@ -22,7 +22,7 @@ describe 'globus class:' do
       apply_manifest(pp, catch_changes: true)
     end
 
-    describe yumrepo('globus-connect-server'), if: fact('os.family') == 'RedHat' do
+    describe yumrepo('globus-connect-server-5'), if: fact('os.family') == 'RedHat' do
       it { is_expected.to exist }
       it { is_expected.to be_enabled }
     end

@@ -1,7 +1,6 @@
 # @summary Manage globus configs
 # @api private
 class globus::config {
-
   file { '/root/mapping.json':
     ensure  => 'file',
     owner   => 'root',

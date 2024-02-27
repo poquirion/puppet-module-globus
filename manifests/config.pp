@@ -23,7 +23,7 @@ class globus::config {
     owner     => 'root',
     group     => 'root',
     mode      => '0700',
-    content => template('globus/globus-full-setup.sh.erb'),
+    content   => template('globus/globus-full-setup.sh.erb'),
   }
 
   file { '/root/globus-cleanup.sh':
@@ -31,7 +31,7 @@ class globus::config {
     owner     => 'root',
     group     => 'root',
     mode      => '0700',
-    content => template('globus/globus-cleanup.sh.erb'),
+    content   => template('globus/globus-cleanup.sh.erb'),
   }
 
   file { '/root/update_mapping.sh':
@@ -39,7 +39,7 @@ class globus::config {
     owner     => 'root',
     group     => 'root',
     mode      => '0700',
-    content => template('globus/update_mapping.sh.erb'),
+    content   => template('globus/update_mapping.sh.erb'),
   }
 
   exec { 'update_mapping':

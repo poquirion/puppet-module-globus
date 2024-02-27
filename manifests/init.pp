@@ -69,6 +69,13 @@
 #   --export-node use when running 'globus-connect-server node setup'
 # @param import_node
 #   --import-node use when running 'globus-connect-server node setup'
+# @param globus_user_id
+#   use for --identity-mapping file:mapping.json when running 'globus-connect-server storage-gateway create posix'
+# @param users
+#   use for --identity-mapping file:mapping.json when running 'globus-connect-server storage-gateway create posix'
+# @param exposed_paths
+#   use to add path in RW  in --estrict-paths file:restriction.json file:mapping.json when 
+#     running 'globus-connect-server storage-gateway create posix'
 #
 class globus (
   # Required

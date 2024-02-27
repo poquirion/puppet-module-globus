@@ -3,43 +3,43 @@
 class globus::config {
 
   file { '/root/mapping.json':
-    ensure    => 'file',
-    owner     => 'root',
-    group     => 'root',
-    mode      => '0600',
+    ensure  => 'file',
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0600',
     content => template('globus/mapping.json.erb'),
   }
 
   file { '/root/restriction.json':
-    ensure    => 'file',
-    owner     => 'root',
-    group     => 'root',
-    mode      => '0600',
+    ensure  => 'file',
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0600',
     content => template('globus/restriction.json.erb'),
   }
 
   file { '/root/globus-full-setup.sh':
-    ensure    => 'file',
-    owner     => 'root',
-    group     => 'root',
-    mode      => '0700',
-    content   => template('globus/globus-full-setup.sh.erb'),
+    ensure  => 'file',
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0700',
+    content => template('globus/globus-full-setup.sh.erb'),
   }
 
   file { '/root/globus-cleanup.sh':
-    ensure    => 'file',
-    owner     => 'root',
-    group     => 'root',
-    mode      => '0700',
-    content   => template('globus/globus-cleanup.sh.erb'),
+    ensure  => 'file',
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0700',
+    content => template('globus/globus-cleanup.sh.erb'),
   }
 
   file { '/root/update_mapping.sh':
-    ensure    => 'file',
-    owner     => 'root',
-    group     => 'root',
-    mode      => '0700',
-    content   => template('globus/update_mapping.sh.erb'),
+    ensure  => 'file',
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0700',
+    content => template('globus/update_mapping.sh.erb'),
   }
 
   exec { 'update_mapping':

@@ -3,6 +3,7 @@ name: CI
 on:
   push:
     branches:
+      - fix-test-suite
       - main
       - master
   pull_request:
@@ -38,7 +39,12 @@ jobs:
         run: bundle exec rake check:symlinks check:git_ignore check:dot_underscore check:test_file rubocop syntax lint metadata_lint
       - name: Run tests
         run: bundle exec rake parallel_spec
+      - name: Setup upterm session
+        uses: lhotari/action-upterm@v1
+        with:
+          limit-access-to-actor: true
   acceptance:
+    needs: unit
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false

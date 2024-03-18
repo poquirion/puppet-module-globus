@@ -1,0 +1,13 @@
+{
+  "DATA_TYPE": "path_restrictions#1.0.0",
+  "read_write": [
+    "$HOME"
+<% scope['globus::exposed_paths']&.each do | mount_point | -%>
+    ,"<%= mount_point %>"
+<% end -%>
+  ],
+  "none": [
+    "/"
+  ]
+}
+

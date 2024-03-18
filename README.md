@@ -1,7 +1,7 @@
 # puppet-globus
 
-[![Puppet Forge](http://img.shields.io/puppetforge/v/treydock/globus.svg)](https://forge.puppetlabs.com/treydock/globus)
-[![CI Status](https://github.com/treydock/puppet-module-globus/workflows/CI/badge.svg?branch=master)](https://github.com/treydock/puppet-module-globus/actions?query=workflow%3ACI)
+[![Puppet Forge](http://img.shields.io/puppetforge/v/poquirion/globus.svg)](https://forge.puppetlabs.com/poquirion/globus)
+[![CI Status](https://github.com/poquirion/puppet-module-globus/workflows/CI/badge.svg?branch=master)](https://github.com/poquirion/puppet-module-globus/actions?query=workflow%3ACI)
 
 ## Overview
 
@@ -13,10 +13,7 @@ Currently this module supports Globus 5.4, at least 5.4.61
 
 | Globus Version | Globus Puppet module versions |
 | -------------- | ----------------------------- |
-| 4.x            | 3.x                           |
-| 4.x & 5.3      | 4.x                           |
-| 4.x & 5.4      | 5.x-9.x                       |
-| 5.4            | 10.x                          |
+| 5.4.71         | 11.x                          |
 
 ## Usage
 
@@ -28,11 +25,42 @@ The following is the minimum parameters that must be passed to setup Globus v5.4
 
 ```puppet
 class { 'globus':
-  display_name  => 'REPLACE My Site Globus',
-  owner         => 'REPLACE-user@example.com',
-  organization  => 'REPLACE-My Site',
+  display_name   => 'REPLACE My Site Globus',
+  organization   => 'REPLACE My Organisation',
+  owner          => 'REPLACE-user@example.com',
+  contact_email  => ''REPLACE-user@example.com'',
+  ip_address     => 'REPLACE Public IP',
+  users          => {'REPLACE user1 name on host': 
+                            globus_id: 'REPLACE user1 Public Globus ID',
+                    'REPLACE user2 name on host': 
+                            globus_id: 'REPLACE user2 Public Globus ID' [ ... ] }
+
 }
 ```
+
+Users will have their `$HOME` folder exposed in a Globus Collection searchable under _display_name_
+
+An extra variable can be added to expose specific path on the host along with the users `$HOME`
+
+```puppet 
+class { 'globus':
+  display_name   => 'REPLACE My Site Globus',
+  organization   => 'REPLACE My Organisation',
+  owner          => 'REPLACE-user@example.com',
+  contact_email  => ''REPLACE-user@example.com'',
+  ip_address     => 'REPLACE Public IP',
+  users          => {'REPLACE user1 name on host':
+                            globus_id: 'REPLACE user1 Public Globus ID',
+                    'REPLACE user2 name on host':
+                            globus_id: 'REPLACE user2 Public Globus ID' [ ... ] }
+  exposed_paths  => [ 'REPLACE path to expose', [...] ]
+}
+
+```
+
+   User will be able to acces their data on the Globus page by using the pasword associated with their 
+globus id, be carful not to enter the wrong ID there!  
+
 
 ### Globus CLI
 
@@ -75,16 +103,10 @@ The `globus_info` fact exposes the information stored in `/var/lib/globus-connec
 
 ```
 
-## Reference
-
-[http://treydock.github.io/puppet-module-globus/](http://treydock.github.io/puppet-module-globus/)
-
 ## Compatibility
 
 Tested using
 
-* RedHat/CentOS 7
-* RedHat/Rocky 8 & 9
+* RedHat/Rocky 8
 * Debian 11
-* Ubuntu 20.04 & 22.04
 

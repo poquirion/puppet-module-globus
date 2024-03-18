@@ -24,7 +24,7 @@ shared_examples_for 'globus::user' do |facts|
       ensure: 'present',
       uid: nil,
       gid: 'gcsweb',
-      shell: shell,
+      shell:,
       home: '/var/lib/globus-connect-server/gcs-manager',
       managehome: 'false',
       system: 'true',

@@ -69,6 +69,13 @@
 #   --export-node use when running 'globus-connect-server node setup'
 # @param import_node
 #   --import-node use when running 'globus-connect-server node setup'
+# @param globus_user_id
+#   use for --identity-mapping file:mapping.json when running 'globus-connect-server storage-gateway create posix'
+# @param users
+#   use for --identity-mapping file:mapping.json when running 'globus-connect-server storage-gateway create posix'
+# @param exposed_paths
+#   use to add path in RW  in --estrict-paths file:restriction.json file:mapping.json when 
+#     running 'globus-connect-server storage-gateway create posix'
 #
 class globus (
   # Required
@@ -108,6 +115,11 @@ class globus (
   Optional[Stdlib::IP::Address] $ip_address = undef,
   Optional[Stdlib::Absolutepath] $export_node = undef,
   Optional[Stdlib::Absolutepath] $import_node = undef,
+  # oicd setup
+  Optional[Array[String]] $globus_user_id = undef,
+  # Collection setup
+  Optional[Array[String]] $exposed_paths = undef,
+  Optional[Hash] $users = undef
 ) {
   $osfamily = $facts.dig('os', 'family')
 
